@@ -27,7 +27,7 @@ and open the template in the editor.
             </feature>
         </config-file>
  
-        <source-file src="src/android/VtigerMApiPlugin.java" target-dir="src/com/example/vtigerApi" />      
+        <source-file src="src/VtigerMApiPlugin.java" target-dir="src/com/example/vtigerApi" />      
      </platform>          
 </plugin>
 
