@@ -73,7 +73,7 @@ public class VtigerMApiPlugin extends CordovaPlugin {
 	}
 	}
     
-    public static string getJsonNodeFromInputStream(InputStream is) throws IOException {
+    public static String getJsonNodeFromInputStream(InputStream is) throws IOException {
         String response = convertStreamToString(is);
         response = response.replace("\ufeff", ""); //Handing zero width no break space 
         System.out.println("#### Java HTtp response :"+response);
