@@ -40,6 +40,7 @@ public class VtigerMApiPlugin extends CordovaPlugin {
         try{
 	       JSONObject arg_object = args.getJSONObject(0);
            String url = arg_object.getString("url");
+           url = "https://vtiger.od1.vtiger.com/modules/Mobile/api.php";
 //           if (!url.endsWith("modules/Mobile/api.php")) {
 //                    url = url + "modules/Mobile/api.php";
 //                }
