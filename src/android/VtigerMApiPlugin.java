@@ -27,7 +27,7 @@ public class VtigerMApiPlugin extends CordovaPlugin {
 	
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		 System.out.println("#### Java VtigerMApiPlugin execute called...");
+		 //System.out.println("#### Java VtigerMApiPlugin execute called...");
          Log.d("gvtiger", "#### Java VtigerMApiPlugin execute called...");
         if (ACTION_SEND_HTTP_REQUEST.equals(action)) { 
 		    	return sendHttpRequest(args, callbackContext);
@@ -52,15 +52,18 @@ public class VtigerMApiPlugin extends CordovaPlugin {
 	       System.out.println("#### Java sendHttpRequest called..");
            JSONObject arg_object = args.getJSONObject(0);
            String url = arg_object.getString("url");
-           if (!url.endsWith("modules/Mobile/api.php")) {
-                    url = url + "modules/Mobile/api.php";
-                }
+//           if (!url.endsWith("modules/Mobile/api.php")) {
+//                    url = url + "modules/Mobile/api.php";
+//                }
            String userName = arg_object.getString("userName");
            String password = arg_object.getString("password");
-           System.out.println("#### Java sendHttpRequest called..password.."+password);
-           System.out.println("#### Java sendHttpRequest called..userName.."+userName);
-           System.out.println("#### Java sendHttpRequest url :"+url);
-           
+           Log.d("gvtiger", "#### Java VtigerMApiPlugin execute url..."+url);
+           Log.d("gvtiger", "#### Java VtigerMApiPlugin execute username..."+userName);
+           Log.d("gvtiger", "#### Java VtigerMApiPlugin execute password :"+password);
+//           System.out.println("#### Java sendHttpRequest called..password.."+password);
+//           System.out.println("#### Java sendHttpRequest called..userName.."+userName);
+//           System.out.println("#### Java sendHttpRequest url :"+url);
+//           
            HttpClient httpClient = getHttpClient(url);
            HttpPost httpPost = new HttpPost(url);
            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -69,9 +72,9 @@ public class VtigerMApiPlugin extends CordovaPlugin {
            nameValuePairs.add(new BasicNameValuePair("password", password));
            HttpResponse httpResponse = httpClient.execute(httpPost);
            HttpEntity httpEntity = httpResponse.getEntity();
-           getJsonNodeFromInputStream(httpEntity.getContent());
-           
-           callbackContext.success();
+           String response= getJsonNodeFromInputStream(httpEntity.getContent());
+           Log.d("gvtiger", "#### Java VtigerMApiPlugin execute response :"+response);
+           callbackContext.success(response);
 	       return true;
 	} catch(Exception e) {
 	    System.err.println("Exception: " + e.getMessage());
@@ -80,10 +83,11 @@ public class VtigerMApiPlugin extends CordovaPlugin {
 	}
 	}
     
-    public static void getJsonNodeFromInputStream(InputStream is) throws IOException {
+    public static string getJsonNodeFromInputStream(InputStream is) throws IOException {
         String response = convertStreamToString(is);
         response = response.replace("\ufeff", ""); //Handing zero width no break space 
         System.out.println("#### Java HTtp response :"+response);
+        return response;
         
     }
     
