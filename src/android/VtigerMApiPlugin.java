@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.commons.io.IOUtils;
+//import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -82,7 +82,7 @@ public class VtigerMApiPlugin extends CordovaPlugin {
 	}
     
     public static void getJsonNodeFromInputStream(InputStream is) throws IOException {
-        String response = IOUtils.toString(is, "UTF-8");
+        //String response = IOUtils.toString(is, "UTF-8");
         response = response.replace("\ufeff", ""); //Handing zero width no break space 
         System.out.println("#### Java HTtp response :"+response);
         
