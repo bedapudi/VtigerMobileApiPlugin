@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-//import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -82,7 +81,7 @@ public class VtigerMApiPlugin extends CordovaPlugin {
 	}
     
     public static void getJsonNodeFromInputStream(InputStream is) throws IOException {
-        //String response = IOUtils.toString(is, "UTF-8");
+        String response = convertStreamToString(is);
         response = response.replace("\ufeff", ""); //Handing zero width no break space 
         System.out.println("#### Java HTtp response :"+response);
         
@@ -107,5 +106,10 @@ public class VtigerMApiPlugin extends CordovaPlugin {
         }
         return httpClient;
     }
+    
+    private static String convertStreamToString(java.io.InputStream is) {
+    java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+    return s.hasNext() ? s.next() : "";
+}
 
 }
