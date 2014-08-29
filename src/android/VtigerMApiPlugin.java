@@ -36,21 +36,9 @@ public class VtigerMApiPlugin extends CordovaPlugin {
 	    return false;
     }	
 	private boolean sendHttpRequest(JSONArray args,  CallbackContext callbackContext){
-		// do the work of Sending Http request in  //
-    	
-//	    JSONObject arg_object = args.getJSONObject(0);
-//	    Intent calIntent = new Intent(Intent.ACTION_EDIT)
-//	        .setType("vnd.android.cursor.item/event")
-//	        .putExtra("beginTime", arg_object.getLong("startTimeMillis"))
-//	        .putExtra("endTime", arg_object.getLong("endTimeMillis"))
-//	        .putExtra("title", arg_object.getString("title"))
-//	        .putExtra("description", arg_object.getString("description"))
-//	        .putExtra("eventLocation", arg_object.getString("eventLocation"));
-//	 
-//	       this.cordova.getActivity().startActivity(calIntent);
+		Log.d("gvtiger", "#### sendHttpRequest called...");
         try{
-	       System.out.println("#### Java sendHttpRequest called..");
-           JSONObject arg_object = args.getJSONObject(0);
+	       JSONObject arg_object = args.getJSONObject(0);
            String url = arg_object.getString("url");
 //           if (!url.endsWith("modules/Mobile/api.php")) {
 //                    url = url + "modules/Mobile/api.php";
@@ -77,6 +65,8 @@ public class VtigerMApiPlugin extends CordovaPlugin {
            callbackContext.success(response);
 	       return true;
 	} catch(Exception e) {
+        Log.d("gvtiger", "#### sendHttpRequest  LLL Exception..."+e.getLocalizedMessage());
+        Log.d("gvtiger", "#### sendHttpRequest Exception..."+e.getMessage());
 	    System.err.println("Exception: " + e.getMessage());
 	    callbackContext.error(e.getMessage());
 	    return false;
