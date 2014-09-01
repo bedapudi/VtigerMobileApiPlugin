@@ -40,7 +40,7 @@ public class VtigerMApiPlugin extends CordovaPlugin {
         try{
 	       JSONObject arg_object = args.getJSONObject(0);
            String url = arg_object.getString("url");
-           url = "https://vtiger.od1.vtiger.com/modules/Mobile/api.php";
+           //url = "https://vtiger.od1.vtiger.com/modules/Mobile/api.php";
 //           if (!url.endsWith("modules/Mobile/api.php")) {
 //                    url = url + "modules/Mobile/api.php";
 //                }
@@ -55,12 +55,16 @@ public class VtigerMApiPlugin extends CordovaPlugin {
 //           
            HttpClient httpClient = getHttpClient(url);
            HttpPost httpPost = new HttpPost(url);
+           Log.d("gvtiger", "#### Java VtigerMApiPlugin  11111");
            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
            nameValuePairs.add(new BasicNameValuePair("_operation", "loginAndFetchModules"));
            nameValuePairs.add(new BasicNameValuePair("username", userName));
            nameValuePairs.add(new BasicNameValuePair("password", password));
+           Log.d("gvtiger", "#### Java VtigerMApiPlugin  2222");
            HttpResponse httpResponse = httpClient.execute(httpPost);
+           Log.d("gvtiger", "#### Java VtigerMApiPlugin  3333");
            HttpEntity httpEntity = httpResponse.getEntity();
+           Log.d("gvtiger", "#### Java VtigerMApiPlugin 4444");
            String response= getJsonNodeFromInputStream(httpEntity.getContent());
            Log.d("gvtiger", "#### Java VtigerMApiPlugin execute response :"+response);
            callbackContext.success(response);
