@@ -53,7 +53,8 @@ public class VtigerMApiPlugin extends CordovaPlugin {
 //           System.out.println("#### Java sendHttpRequest called..userName.."+userName);
 //           System.out.println("#### Java sendHttpRequest url :"+url);
 //           
-           HttpClient httpClient = getHttpClient(url);
+           //HttpClient httpClient = getHttpClient(url);
+           HttpClient httpClient = new DefaultHttpClient();
            HttpPost httpPost = new HttpPost(url);
            Log.d("gvtiger", "#### Java VtigerMApiPlugin  11111");
            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
